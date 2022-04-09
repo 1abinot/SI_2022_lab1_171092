@@ -1,5 +1,5 @@
 Water x 2
-Milk x 1
+Milk x 3
 Bread x 1
 Orange x 3
 Apple x 4
