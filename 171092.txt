@@ -1,0 +1,227 @@
+1.
+https://github.com/1abinot
+
+
+2.
+master
+
+
+3.
+https://github.com/1abinot/SI_2022_lab1_171092
+
+
+4.
+git clone го клонира репозиториумот,
+со оваа команда го клониравме репозиториумот и создадовме локална копија на тоj репозиториум во нашиот компјутер
+$ git clone https://github.com/1abinot/SI_2022_lab1_171092
+$ cd SI_2022_lab1_171092/
+
+
+
+5.
+//креираме нова датотека именуван shopping_list.txt
+$ nano shopping_list.txt
+
+Ова команда подготви содржина за следниот commit
+$ git add shopping_list.txt
+
+Со ова команда ги запишиме промените во репозиториумот
+$ git commit -m "Add 5 items to the shopping list"
+
+
+
+6.
+$ nano shopping_list.txt
+$ git add shopping_list.txt
+$ git commit -m "Add quantities to the items."
+
+
+
+//креираме нови гранки
+7.$ git branch branch1
+$ git branch branch2
+
+
+//листање на хисторија на сите commit-и
+8.$ git log
+commit ec32f6629ec188690929e9090edc86b6b5359a48 (HEAD -> master, branch2, branch1)
+Author: 1abinot <labi.aziri1@gmail.com>
+Date:   Sun Apr 10 00:05:03 2022 +0200
+
+    Add quantities to the items.
+
+commit 256f5821394c95066ed069dbef27496aa1d1965e
+Author: 1abinot <labi.aziri1@gmail.com>
+Date:   Sun Apr 10 00:04:07 2022 +0200
+
+    Add 5 items to the shopping list
+
+commit 0e042b2e9d384dad2eea95c6da7ad2421c754a51 (origin/master, origin/HEAD)
+Author: 1abinot <49006641+1abinot@users.noreply.github.com>
+Date:   Sun Apr 10 00:00:31 2022 +0200
+
+    Initial commit
+
+
+
+Со ова команда правиме push на commits од нашата локална гранка (во нашиот локален репозиториум) во remote репозиториумот.
+9.$ git push -u origin master
+
+$ git checkout branch1
+$ git push -u origin branch1
+
+$ git checkout branch2
+$ git push -u origin branch2
+
+
+//префрлање на branch1 гранката
+10.$ git checkout branch1
+
+
+
+11.nano shopping_list.txt
+$ git add shopping_list.txt
+$ git commit -m “Change quantity of item #5”
+
+
+
+12.$ git checkout master
+
+
+
+13.$ nano shopping_list.txt
+$ git add shopping_list.txt
+$ git commit -m "Change quantity of item #2"
+
+
+
+14.$ git push -u origin master
+
+$ git checkout branch1
+$ git push -u origin branch1
+
+$ git checkout branch2
+$ git push -u origin branch2
+
+
+
+15. $ git checkout branch2
+
+
+
+16.$ nano shopping_list.txt
+$ git add shopping_list.txt
+$ git commit -m "Modify item #4"
+
+
+
+17.
+$ git log
+commit 7cad1f3a26f7ac7e5919579da3d6623339de4b05 (HEAD -> branch2)
+Author: 1abinot <labi.aziri1@gmail.com>
+Date:   Sun Apr 10 00:11:13 2022 +0200
+
+    Modify item #4
+
+commit ec32f6629ec188690929e9090edc86b6b5359a48 (origin/branch2)
+Author: 1abinot <labi.aziri1@gmail.com>
+Date:   Sun Apr 10 00:05:03 2022 +0200
+
+    Add quantities to the items.
+
+commit 256f5821394c95066ed069dbef27496aa1d1965e
+Author: 1abinot <labi.aziri1@gmail.com>
+Date:   Sun Apr 10 00:04:07 2022 +0200
+
+    Add 5 items to the shopping list
+
+commit 0e042b2e9d384dad2eea95c6da7ad2421c754a51
+Author: 1abinot <49006641+1abinot@users.noreply.github.com>
+Date:   Sun Apr 10 00:00:31 2022 +0200
+
+    Initial commit
+
+
+
+
+18.$ nano shopping_list.txt
+$ git add shopping_list.txt
+$ git commit --amend -m "Modify item #4 and add item #6"
+
+
+
+
+19.
+$ git log
+commit 67cf522a9ecba72f9384308eab1cda8c27f31b12 (HEAD -> branch2)
+Author: 1abinot <labi.aziri1@gmail.com>
+Date:   Sun Apr 10 00:11:13 2022 +0200
+
+    Modify item #4 and add item #6
+
+commit ec32f6629ec188690929e9090edc86b6b5359a48 (origin/branch2)
+Author: 1abinot <labi.aziri1@gmail.com>
+Date:   Sun Apr 10 00:05:03 2022 +0200
+
+    Add quantities to the items.
+
+commit 256f5821394c95066ed069dbef27496aa1d1965e
+Author: 1abinot <labi.aziri1@gmail.com>
+Date:   Sun Apr 10 00:04:07 2022 +0200
+
+    Add 5 items to the shopping list
+
+commit 0e042b2e9d384dad2eea95c6da7ad2421c754a51
+Author: 1abinot <49006641+1abinot@users.noreply.github.com>
+Date:   Sun Apr 10 00:00:31 2022 +0200
+
+    Initial commit
+
+
+
+//Се спојуват според стратегијата recursive и не се јавува конфликт
+20. $ git checkout master
+$ git merge branch1
+Auto-merging shopping_list.txt
+Merge made by the 'recursive' strategy.
+ shopping_list.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+*****
+//Се јави конфликт, така што го отворив датотеката shopping_list и го едитирав на тој начин што:
+го избришав покажувачите, 
+го избришав четвртата ставка на master гранката (бидејќи тој беше променет на branch2 гранката со commit "Modify item #4") 
+го избришав продуктот со стариот квантитет на branch2 гранката (бидејќи тој беше променте на master гранката со commit "Change quantity of item #2”)
+*****
+21.$ git merge branch2
+Auto-merging shopping_list.txt
+CONFLICT (content): Merge conflict in shopping_list.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+
+//влезиме во датотека за да го избришиме верзијата што не ни треба при јавување на конфликтот.
+$ nano shopping_list.txt
+
+//правиме merge после конфликтот
+$ git commit -a -m "Merge branch 'branch2'"
+
+
+
+22.$ git add 171092.txt
+$ git commit -m "Add docs"
+
+
+23. $ git push -u origin master
+
+
+Правиме push на сите commits што ги имавме напрaвено во новата гранка
+$ git checkout branch1
+$ git push -u origin branch1
+
+$ git checkout branch2
+$ git push -u origin branch2
+
+
+
+
+
